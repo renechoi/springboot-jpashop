@@ -75,4 +75,14 @@ public class OrderSimpleApiController {
                 .collect(toList());
         return result;
     }
+
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository; //의존관계 주입
+    /**
+     * V4. JPA에서 DTO로 바로 조회
+     *-쿼리1번 호출
+     * - select 절에서 원하는 데이터만 선택해서 조회 */
+    @GetMapping("/api/v4/simple-orders")
+    public List<OrderSimpleQueryDto> ordersV4() {
+        return orderSimpleQueryRepository.findOrderDtos();
+    }
 }
